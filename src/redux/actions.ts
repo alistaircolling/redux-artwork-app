@@ -62,15 +62,12 @@ export const fetchArtworkDetailFailure = (error: string): ActionTypes => ({
 export const fetchArtworkDetail = (id: number): ThunkResult<void> => async (dispatch) => {
   dispatch(fetchArtworkDetailRequest());
   try {
-    // Fetch the artwork details
     const response = await fetch(`https://corsproxy.io/?https://api.artic.edu/api/v1/artworks/${id}`);
     const data = await response.json();
     let artworkDetail = convertToCamelCase(data.data) as ArtworkDetail;
 
-    // Check if the image_id exists and then fetch the image using the IIIF Image API
     if (data.data.image_id) {
       const imageUrl = `https://www.artic.edu/iiif/2/${data.data.image_id}/full/843,/0/default.jpg`;
-      // Add the imageUrl to the artworkDetail object
       artworkDetail = { ...artworkDetail, imageUrl };
     }
 
@@ -81,17 +78,6 @@ export const fetchArtworkDetail = (id: number): ThunkResult<void> => async (disp
 };
 
 
-// export const fetchArtworkDetail = (id: number): ThunkResult<void> => async (dispatch) => {
-//   dispatch(fetchArtworkDetailRequest());
-//   try {
-//     const response = await fetch(`https://corsproxy.io/?https://api.artic.edu/api/v1/artworks/${id}`);
-//     const data = await response.json();
-//     const artworkDetail = convertToCamelCase(data.data) as ArtworkDetail;
-//     dispatch(fetchArtworkDetailSuccess(artworkDetail));
-//   } catch (error) {
-//     dispatch(fetchArtworkDetailFailure(error as string));
-//   }
-// };
 
 export const resetArtworkDetail = (): ActionTypes => ({
   type: RESET_ARTWORK_DETAIL

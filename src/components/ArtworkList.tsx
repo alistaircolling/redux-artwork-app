@@ -54,7 +54,7 @@ const ArtworkList: React.FC = () => {
                     variant='contained'
                     color='primary'
                     onClick={() => navigate(`/artwork/${artwork.id}`)}
-                    style={{ margin: '10px' }} // Add more spacing if needed
+                    style={{ margin: '10px' }}
                   >
                     View
                   </Button>
