@@ -9,4 +9,4 @@
 ## Live Demo
 You can view the live version of the application [here](https://main.d2c1w949gcml7h.amplifyapp.com/).
 
-![App View](assets/app-view.png)
+![App View](src/assets/app-view.png)
